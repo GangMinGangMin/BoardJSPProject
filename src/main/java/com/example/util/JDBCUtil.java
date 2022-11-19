@@ -2,9 +2,12 @@ package com.example.util;
 
 import com.example.bean.BoardVO;
 import com.example.dao.BoardDAO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -44,13 +47,13 @@ public class JDBCUtil {
 
                 filename = multipartRequest.getFilesystemName("photo");
                 one = new BoardVO();
-                String sid = multipartRequest.getParameter("seq");
-                if (sid != null && !sid.equals("")) one.setSid(Integer.parseInt(seq));
+                String seq = multipartRequest.getParameter("seq");
+                if (seq != null && !seq.equals("")) one.setSid(Integer.parseInt(seq));
                 one.setCategory(multipartRequest.getParameter("category"));
 
-                if (sid != null && !sid.equals("")) {
+                if (seq != null && !seq.equals("")) {
                     BoardDAO dao = new BoardDAO();
-                    String oldfilename = dao.getPhotoFilename(Integer.parseInt(sid));
+                    String oldfilename = dao.getPhotoFilename(Integer.parseInt(seq));
                     if (filename != null && oldfilename != null)
                         FileUpload.deleteFile(request, oldfilename);
                     else if (filename == null && oldfilename != null)
