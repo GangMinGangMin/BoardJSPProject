@@ -8,8 +8,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>free board</title>
 
-	<link rel = "stylesheet" href="member.css">
-
 	<style>
 #list {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -49,6 +47,7 @@
 <tr>
 	<th>Id</th>
 	<th>Category</th>
+	<th>photo</th>
 	<th>Title</th>
 	<th>Writer</th>
 	<th>Content</th>
@@ -60,8 +59,6 @@
 	<tr>
 		<td>${u.getSeq()}</td>
 		<td>${u.getCategory()}</td>
-		<td>Photo</td><td><c:if test="${vo.getPhoto() ne ''}"><br />>
-		<img src="${pageContext.request.contextPath }/upload/${u.getPhoto()}" class="photo"></c:if></td>
 		<td>${u.getTitle()}</td>
 		<td>${u.getWriter()}</td>
 		<td>${u.getContent()}</td>

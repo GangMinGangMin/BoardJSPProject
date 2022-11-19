@@ -14,7 +14,7 @@ public class FileUpload {
         String filename = "";
         int sizeLimit = 15 * 1024 * 1024;
 
-        String realPath = request.getServletContext().getRealPath("upload");
+        String realPath = request.getSession().getServletContext().getRealPath("upload");
 
         File dir = new File(realPath);
         if (!dir.exists()) dir.mkdirs();
@@ -27,8 +27,12 @@ public class FileUpload {
             filename = multipartRequest.getFilesystemName("photo");
             one = new BoardVO();
             String seq = multipartRequest.getParameter("seq");
-            if (seq != null && !seq.equals("")) one.setSid(Integer.parseInt(seq));
+            if (seq != null && !seq.equals("")) one.setSeq(Integer.parseInt(seq));
             one.setCategory(multipartRequest.getParameter("category"));
+            one.setTitle(multipartRequest.getParameter("title"));
+            one.setWriter(multipartRequest.getParameter("writer"));
+            one.setContent(multipartRequest.getParameter("content"));
+
 
             if (seq != null && !seq.equals("")) {
                 BoardDAO dao = new BoardDAO();
@@ -39,14 +43,14 @@ public class FileUpload {
                     filename = oldfilename;
             }
             one.setPhoto(filename);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return one;
     }
 
     public static void deleteFile(HttpServletRequest request, String filename) {
-        String filePath = request.getServletContext().getRealPath("upload");
+        String filePath = request.getSession().getServletContext().getRealPath("upload");
 
         File f = new File(filePath + "/" + filename);
         if( f.exists()) f.delete();

@@ -11,6 +11,7 @@ public class BoardVO {
     private String content;
     private Date regdate;
     private int cnt;
+    private String photo;
 
     public int getSeq() {
         return seq;
@@ -54,12 +55,11 @@ public class BoardVO {
     public void setCategory(String category) {
         this.category = category;
     }
-
-    public void setSid(int parseInt) {
-
+    public String getPhoto() {
+        return photo;
+    }
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
-    public void setPhoto(String filename) {
-
-    }
 }
