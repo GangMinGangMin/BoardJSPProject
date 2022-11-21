@@ -10,7 +10,7 @@
 <body>
 
 <h1>Add New Post</h1>
-<form action="addpost.jsp" method="post" enctype="multipart/form-date">
+<form action="addpost.jsp" method="post" enctype="multipart/form-data">
 <table>
     <tr><td>Category:</td><td><input type="text" name="category"/></td></tr>
     <tr><td>Photo</td><td><input type="file" name="photo" /></td></tr>

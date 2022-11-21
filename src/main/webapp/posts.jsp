@@ -59,6 +59,8 @@
 	<tr>
 		<td>${u.getSeq()}</td>
 		<td>${u.getCategory()}</td>
+		<td><c:if test="${u.getPhoto() ne ''}"><br />
+			<img src="${pageContext.request.contextPath}/upload/${u.getPhoto()}" class="photo"></c:if></td>
 		<td>${u.getTitle()}</td>
 		<td>${u.getWriter()}</td>
 		<td>${u.getContent()}</td>

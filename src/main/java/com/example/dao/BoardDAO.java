@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoardDAO {
-    Connection conn = null;
-    PreparedStatement stmt = null;
-    ResultSet rs = null;
+    private Connection conn = null;
+    private PreparedStatement stmt = null;
+    private ResultSet rs = null;
 
-    private final String BOARD_INSERT = "insert into board (category,photo, title, writer, content) values (?,?,?,?,?)";
-    private final String BOARD_UPDATE = "update board set category=?,photo=?, title=?, writer=?, content=? where seq=?";
-    private final String BOARD_DELETE = "delete from board  where seq=?";
-    private final String BOARD_GET = "select * from board  where seq=?";
-    private final String BOARD_LIST = "select * from board order by seq desc";
+    private final String BOARD_INSERT = "insert into BOARD (category,photo, title, writer, content) values (?,?,?,?,?)";
+    private final String BOARD_UPDATE = "update BOARD set category=?,photo=?, title=?, writer=?, content=? where seq=?";
+    private final String BOARD_DELETE = "delete from BOARD  where seq=?";
+    private final String BOARD_GET = "select * from BOARD  where seq=?";
+    private final String BOARD_LIST = "select * from BOARD order by seq desc";
 
     public int insertBoard(BoardVO vo) {
         System.out.println("===> JDBC로 insertBoard() 기능 처리");
@@ -30,9 +30,11 @@ public class BoardDAO {
             stmt.setString(3, vo.getTitle());
             stmt.setString(4, vo.getWriter());
             stmt.setString(5, vo.getContent());
+            System.out.println(vo.getCategory() + vo.getPhoto() + vo.getTitle());
             stmt.executeUpdate();
             return 1;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         return 0;
@@ -131,6 +133,7 @@ public class BoardDAO {
                 BoardVO one = new BoardVO();
                 one.setSeq(rs.getInt("seq"));
                 one.setCategory(rs.getString("category"));
+                one.setPhoto(rs.getString("photo"));
                 one.setTitle(rs.getString("title"));
                 one.setWriter(rs.getString("writer"));
                 one.setContent(rs.getString("content"));
