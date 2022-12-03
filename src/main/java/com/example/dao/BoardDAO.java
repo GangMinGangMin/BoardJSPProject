@@ -33,8 +33,7 @@ public class BoardDAO {
             System.out.println(vo.getCategory() + vo.getPhoto() + vo.getTitle());
             stmt.executeUpdate();
             return 1;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return 0;
@@ -45,9 +44,9 @@ public class BoardDAO {
         conn = JDBCUtil.getConnection();
         try {
             stmt = conn.prepareStatement(BOARD_DELETE);
-            stmt.setInt(1,seq);
+            stmt.setInt(1, seq);
             rs = stmt.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 one = new BoardVO();
                 one.setSeq(rs.getInt("seq"));
                 one.setPhoto(rs.getString("Photo"));
@@ -57,12 +56,13 @@ public class BoardDAO {
                 one.setContent(rs.getString("content"));
                 one.setCnt(rs.getInt("cnt"));
             }
-            rs.close();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        return one;
-    }
+			rs.close();
+}
+		catch(Exception e) {
+                e.printStackTrace();
+                }
+                return one;
+                }
     // 글 삭제
     public void deleteBoard(BoardVO vo) {
         System.out.println("===> JDBC로 deleteBoard() 기능 처리");

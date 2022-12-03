@@ -37,7 +37,7 @@
 </script>
 </head>
 <body>
-<h1>자유게시판</h1>
+<h1>책 개미장터</h1>
 <%
 	BoardDAO boardDAO = new BoardDAO();
 	List<BoardVO> list = boardDAO.getBoardList();
